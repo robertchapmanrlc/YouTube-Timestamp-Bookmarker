@@ -1,4 +1,4 @@
-chrome.runtime.onMessag.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action == "bookmark") {
     let videoId = window.location.search.split("v=")[1];
     let timestamp = request.timestamp;
