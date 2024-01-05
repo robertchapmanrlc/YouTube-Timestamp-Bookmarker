@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "description": "Bookmark Timestamps on YouTube videos",
     "permissions": ["storage", "activeTab"],
-    "browser_action": {
+    "action": {
         "default_popup": "popup.html"
     },
     "content_scripts": [
