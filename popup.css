@@ -1,12 +1,29 @@
 body {
-  width: 150rem;
+  width: 200px;
+  background-color: black;
+  color: white;
 }
 
 .popup-container {
-  padding: 10rem;
+  padding: 10px;
 }
 
 input {
   width: 100%;
-  margin-bottom: 5rem;
+  margin-bottom: 10px;
+  color: white;
+  background-color: gray;
+}
+
+button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  transition: background-color 200ms;
+  transition: color 200ms;
+}
+
+button:hover {
+  color: black;
+  background-color: white;
 }
