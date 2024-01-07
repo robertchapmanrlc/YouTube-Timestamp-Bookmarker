@@ -2,12 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let timeStampInput = document.getElementById("timestampInput");
   let bookmarkButton = document.getElementById("bookmarkBtn");
   let bookmarkList = document.getElementById('bookmarkList');
+  let messageContainer = document.getElementById('messageContainer');
 
   bookmarkButton.addEventListener("click", () => {
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       let activeTab = tabs[0];
       chrome.tabs.sendMessage(activeTab.id, { action: 'bookmark', timestamp: timeStampInput.value }, (response) => {
-        loadBookmarks(response.bookmarks);
+        if (response && response.bookmarks) {
+          loadBookmarks(response.bookmarks);
+        } else {
+          messageContainer.textContent = "This is not a YouTube video";
+        }
       });
     });
   });
@@ -24,8 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     let activeTab = tabs[0];
+
     chrome.tabs.sendMessage(activeTab.id, { action: 'getBookmarks' }, (response) => {
-      loadBookmarks(response.bookmarks);
-    });
+      if (response && response.bookmarks) {
+        loadBookmarks(response.bookmarks);
+      } else {
+          messageContainer.textContent = "This is not a YouTube video";
+      }
+    });    
   });
 });
