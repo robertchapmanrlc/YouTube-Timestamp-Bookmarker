@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       sendResponse({ bookmarks: bookmarks });
       alert("Timestamp bookmarked successfully!");
     }
-  } else if (request.action == 'getBookmarks') {
+  } else if (request.action == "getBookmarks") {
     let videoId = getVideoIdFromUrl(window.location.href);
     let bookmarks = JSON.parse(localStorage.getItem(videoId));
     console.log(bookmarks);
@@ -19,10 +19,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function getVideoIdFromUrl(url) {
-  let urlParts = url.split('&');
+  let urlParts = url.split("&");
 
   for (let i = 0; i < urlParts.length; i += 1) {
-    if (urlParts[i].startsWith('v=')) {
+    if (urlParts[i].startsWith("v=")) {
       return urlParts[i].substring(2);
     }
   }

@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let messageContainer = document.getElementById('messageContainer');
 
   bookmarkButton.addEventListener("click", () => {
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
       let activeTab = tabs[0];
       chrome.tabs.sendMessage(activeTab.id, { action: 'bookmark', timestamp: timeStampInput.value }, (response) => {
         if (response && response.bookmarks) {
           loadBookmarks(response.bookmarks);
         } else {
-          messageContainer.textContent = "This is not a YouTube video";
+          messageContainer.textContent = "This is not a YouTube video page.";
         }
       });
     });
@@ -27,15 +27,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function isYouTubeVideoPage(url) {
+    return (
+      url.includes("youtube.com") &&
+      url.startsWith("https://www.youtube.com/watch")
+    );
+  }
+
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     let activeTab = tabs[0];
-
-    chrome.tabs.sendMessage(activeTab.id, { action: 'getBookmarks' }, (response) => {
-      if (response && response.bookmarks) {
-        loadBookmarks(response.bookmarks);
-      } else {
-          messageContainer.textContent = "This is not a YouTube video";
-      }
-    });    
+    if (!isYouTubeVideoPage(activeTab.url)) {
+      messageContainer.textContent = 'This is not a YouTube video page.';
+    } else {
+      chrome.tabs.sendMessage(activeTab.id, { action: 'getBookmarks' }, (response) => {
+        if (response && response.bookmarks) {
+          loadBookmarks(response.bookmarks);
+        }
+        messageContainer.textContent = '';
+      });
+    }
   });
 });
