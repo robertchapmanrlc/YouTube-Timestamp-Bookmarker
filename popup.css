@@ -1,7 +1,9 @@
 body {
-  width: 200px;
+  width: 250px;
   background-color: black;
   color: white;
+  text-align: center;
+  
 }
 
 .popup-container {
@@ -17,10 +19,12 @@ input {
 
 button {
   color: white;
+  width: 100%;
   background-color: transparent;
   border: none;
   transition: background-color 200ms;
   transition: color 200ms;
+  margin-bottom: 10px;
 }
 
 button:hover {
