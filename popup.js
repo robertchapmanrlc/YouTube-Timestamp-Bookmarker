@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bookmarks.forEach((timestamp) => {
       let listItem = document.createElement("li");
+      let timestampText = document.createElement('p');
+      let deleteBookmarkBtn = document.createElement('button');
       let hours = Math.floor(timestamp / 3600);
       let minutes = Math.floor((timestamp % 3600) / 60);
       let seconds = Math.floor(timestamp % 60);
@@ -34,13 +36,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
       formattedTimestamp += (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 
-      listItem.textContent = formattedTimestamp;
-      listItem.addEventListener('click', () => {
+      timestampText.textContent = formattedTimestamp;
+      timestampText.addEventListener('click', () => {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
           let activeTab = tabs[0];
           chrome.tabs.sendMessage(activeTab.id, { action: 'goToTimestamp', timestamp: timestamp });
         });
       });
+
+      deleteBookmarkBtn.textContent = "D";
+      deleteBookmarkBtn.addEventListener('click', () => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          let activeTab = tabs[0];
+          chrome.tabs.sendMessage(activeTab.id, { action: 'deleteBookmark', timestamp: timestamp }, (response) => {
+            if (response && response.bookmarks) {
+              loadBookmarks(response.bookmarks);
+            }
+          });
+        });
+      });
+      
+      listItem.appendChild(timestampText);
+      listItem.appendChild(deleteBookmarkBtn);
       bookmarkList.appendChild(listItem);
     });
   }
