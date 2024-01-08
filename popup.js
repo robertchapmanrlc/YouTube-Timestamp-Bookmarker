@@ -21,8 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
     bookmarkList.innerHTML = '';
 
     bookmarks.forEach((timestamp) => {
-      let listItem = document.createElement('li');
-      listItem.textContent = timestamp;
+      let listItem = document.createElement("li");
+      let hours = Math.floor(timestamp / 3600);
+      let minutes = Math.floor((timestamp % 3600) / 60);
+      let seconds = Math.floor(timestamp % 60);
+
+      let formattedTimestamp = '';
+
+      if (hours > 0) {
+        formattedTimestamp += hours + ':';
+      }
+
+      formattedTimestamp += (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+      listItem.textContent = formattedTimestamp;
       bookmarkList.appendChild(listItem);
     });
   }

@@ -36,11 +36,7 @@ function getCurrentTimestampFromPlayer() {
   let player = document.getElementsByClassName('video-stream')[0];
 
   if (player) {
-    let currentTime = player.currentTime;
-    let minutes = Math.floor(currentTime / 60);
-    let seconds = Math.floor(currentTime % 60);
-
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    return player.currentTime;
   } else {
     return null;
   }
