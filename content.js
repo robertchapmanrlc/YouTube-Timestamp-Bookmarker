@@ -1,19 +1,20 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action == "bookmark") {
-    let videoId = getVideoIdFromUrl(window.location.href);
-    let timestamp = request.timestamp;
-
-    if (videoId && timestamp) {
+    let timestamp = getCurrentTimestampFromPlayer();
+    
+    if (timestamp) {
+      let videoId = getVideoIdFromUrl(window.location.href);
       let bookmarks = JSON.parse(localStorage.getItem(videoId)) || [];
       bookmarks.push(timestamp);
       localStorage.setItem(videoId, JSON.stringify(bookmarks));
       sendResponse({ bookmarks: bookmarks });
       alert("Timestamp bookmarked successfully!");
+    } else {
+      alert('Failed to get timestamp from the video player');
     }
   } else if (request.action == "getBookmarks") {
     let videoId = getVideoIdFromUrl(window.location.href);
     let bookmarks = JSON.parse(localStorage.getItem(videoId));
-    console.log(bookmarks);
     sendResponse({ bookmarks: bookmarks });
   }
 });
@@ -29,4 +30,18 @@ function getVideoIdFromUrl(url) {
 
   let videoIdMatches = url.match(/[?&]v=([^&#]+)/);
   return videoIdMatches ? videoIdMatches[1] : null;
+}
+
+function getCurrentTimestampFromPlayer() {
+  let player = document.getElementsByClassName('video-stream')[0];
+
+  if (player) {
+    let currentTime = player.currentTime;
+    let minutes = Math.floor(currentTime / 60);
+    let seconds = Math.floor(currentTime % 60);
+
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  } else {
+    return null;
+  }
 }

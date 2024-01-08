@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   bookmarkButton.addEventListener("click", () => {
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
       let activeTab = tabs[0];
-      chrome.tabs.sendMessage(activeTab.id, { action: 'bookmark', timestamp: timeStampInput.value }, (response) => {
+      chrome.tabs.sendMessage(activeTab.id, { action: 'bookmark' }, (response) => {
         if (response && response.bookmarks) {
           loadBookmarks(response.bookmarks);
         } else {
