@@ -35,6 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
       formattedTimestamp += (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 
       listItem.textContent = formattedTimestamp;
+      listItem.addEventListener('click', () => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          let activeTab = tabs[0];
+          chrome.tabs.sendMessage(activeTab.id, { action: 'goToTimestamp', timestamp: timestamp });
+        });
+      });
       bookmarkList.appendChild(listItem);
     });
   }

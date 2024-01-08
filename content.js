@@ -16,6 +16,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     let videoId = getVideoIdFromUrl(window.location.href);
     let bookmarks = JSON.parse(localStorage.getItem(videoId));
     sendResponse({ bookmarks: bookmarks });
+  } else if (request.action == 'goToTimestamp') {
+    let timestamp = request.timestamp;
+    goToTimestamp(timestamp);
   }
 });
 
@@ -39,5 +42,13 @@ function getCurrentTimestampFromPlayer() {
     return player.currentTime;
   } else {
     return null;
+  }
+}
+
+function goToTimestamp(timestamp) {
+  let player = document.getElementsByClassName('video-stream')[0];
+
+  if (player) {
+    player.currentTime = timestamp;
   }
 }

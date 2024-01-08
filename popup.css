@@ -39,3 +39,8 @@ ul {
 li {
   list-style-type: none;
 }
+
+li:hover {
+  cursor: pointer;
+  color: hsl(220, 100%, 50%);
+}
