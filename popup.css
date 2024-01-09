@@ -38,4 +38,11 @@ ul {
 
 li {
   list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+
+li > p:hover {
+  cursor: pointer;
+  color: hsl(220, 100%, 50%);
 }
