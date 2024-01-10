@@ -1,12 +1,84 @@
 body {
-  width: 150rem;
+  width: 250px;
+  background-color: #1c1c1c;
+  color: white;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
 }
 
 .popup-container {
-  padding: 10rem;
+  padding: 10px;
 }
 
-input {
+#bookmarkBtn {
+  color: #fff;
   width: 100%;
-  margin-bottom: 5rem;
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid #555;
+  transition: background-color 200ms, color 200ms;
+  cursor: pointer;
+}
+
+#bookmarkBtn:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+button {
+  color: #fff;
+  width: 25%;
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid #555;
+  transition: background-color 200ms, color 200ms;
+  cursor: pointer;
+}
+
+
+button:hover .trash-can-icon img {
+  filter: invert(100%);
+}
+
+button:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+#bookmarkList {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #444;
+  padding: 8px;
+  border-radius: 4px;
+  list-style-type: none;
+}
+
+li p {
+  margin: 0;
+  font-size: medium;
+}
+
+li p:hover {
+  cursor: pointer;
+  color: #75aaff;
+}
+
+#messageContainer {
+  color: #ff6b6b;
+  margin-top: 10px;
 }
