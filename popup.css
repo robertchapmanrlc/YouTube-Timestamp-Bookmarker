@@ -10,14 +10,28 @@ body {
   padding: 10px;
 }
 
-button {
+#bookmarkBtn {
   color: #fff;
   width: 100%;
   padding: 8px;
   background-color: transparent;
   border: 1px solid #555;
   transition: background-color 200ms, color 200ms;
-  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#bookmarkBtn:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+button {
+  color: #fff;
+  width: 25%;
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid #555;
+  transition: background-color 200ms, color 200ms;
   cursor: pointer;
 }
 
@@ -28,15 +42,28 @@ button:hover {
 
 ul {
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 li {
-  list-style-type: none;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #444;
+  padding: 8px;
+  border-radius: 4px;
+  list-style-type: none;
 }
 
-li > p:hover {
+li p {
+  margin: 0;
+  font-size: medium;
+}
+
+li p:hover {
   cursor: pointer;
-  color: hsl(220, 100%, 50%);
+  color: #75aaff;
 }
