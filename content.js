@@ -8,9 +8,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       bookmarks.push(timestamp);
       localStorage.setItem(videoId, JSON.stringify(bookmarks));
       sendResponse({ bookmarks: bookmarks });
-      alert("Timestamp bookmarked successfully!");
-    } else {
-      alert('Failed to get timestamp from the video player');
     }
   } else if (request.action == "getBookmarks") {
     let videoId = getVideoIdFromUrl(window.location.href);
