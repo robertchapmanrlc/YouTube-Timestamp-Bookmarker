@@ -40,6 +40,11 @@ button:hover {
   background-color: #fff;
 }
 
+#bookmarkList {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -66,4 +71,9 @@ li p {
 li p:hover {
   cursor: pointer;
   color: #75aaff;
+}
+
+#messageContainer {
+  color: #ff6b6b;
+  margin-top: 10px;
 }
