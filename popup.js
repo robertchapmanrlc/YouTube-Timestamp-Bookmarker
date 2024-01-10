@@ -44,7 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      deleteBookmarkBtn.textContent = "D";
+      let trashCanIcon = createTrashCanIcon();
+      deleteBookmarkBtn.appendChild(trashCanIcon);
       deleteBookmarkBtn.addEventListener('click', () => {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
           let activeTab = tabs[0];
@@ -67,6 +68,17 @@ document.addEventListener("DOMContentLoaded", () => {
       url.includes("youtube.com") &&
       url.startsWith("https://www.youtube.com/watch")
     );
+  }
+
+  function createTrashCanIcon() {
+    let svgImage = new Image();
+    svgImage.src = "./Trash Icon.svg";
+
+    let div = document.createElement('div');
+    div.appendChild(svgImage);
+    div.classList.add('trash-can-icon');
+
+    return div;
   }
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

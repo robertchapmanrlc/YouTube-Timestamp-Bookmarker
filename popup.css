@@ -35,6 +35,11 @@ button {
   cursor: pointer;
 }
 
+
+button:hover .trash-can-icon img {
+  filter: invert(100%);
+}
+
 button:hover {
   color: #000;
   background-color: #fff;
