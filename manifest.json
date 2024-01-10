@@ -4,6 +4,12 @@
     "version": "1.0.0",
     "description": "Bookmark Timestamps on YouTube videos",
     "permissions": ["storage", "activeTab"],
+        "icons": {
+        "16": "Icon.png",
+        "32": "Icon.png",
+        "48": "Icon.png",
+        "128": "Icon.png"
+    },
     "action": {
         "default_popup": "popup.html"
     },
