@@ -7,7 +7,7 @@ When the extension used on a YouTube video page, saved timestamps are displayed 
 ## Demos
 
 ### Add Timestamp
-![Gif of adding a timestamp](https://i.ibb.co/GvpHBFR/Add-Timestamp.gif)
+<img src="https://i.ibb.co/TB2Wprt/Add-Timestamp.gif" alt="Add-Timestamp" border="0" />
 
 ### Go to Timestamp
-![Gif of clicking on timestamp](https://i.ibb.co/ZMrKVcN/Clicking-Timestamp.gif)
+<img src="https://i.ibb.co/ZMrKVcN/Clicking-Timestamp.gif" alt="Clicking-Timestamp" border="0">
