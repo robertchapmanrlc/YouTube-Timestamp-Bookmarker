@@ -3,7 +3,7 @@
     "name": "YouTube Timestamp Bookmarker",
     "version": "1.0.0",
     "description": "Bookmark Timestamps on YouTube videos",
-    "permissions": ["storage", "activeTab"],
+    "permissions": ["activeTab"],
         "icons": {
         "16": "Icon.png",
         "32": "Icon.png",
